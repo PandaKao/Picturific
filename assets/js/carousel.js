@@ -46,7 +46,7 @@ function addImageTag(src, tag) {
     if (images.length === 0) {
         return;
     }
-    let image = images.find(item => item.src === src);
+    let image = images.find((element) => element.src === src);
     // Make sure image exists in image store
     if (image) {
         // Don't add tag if already there
@@ -63,7 +63,7 @@ function removeImageTag(src, tag) {
     if (images.length === 0) {
         return;
     }
-    let image = images.find(item => item.src === src);
+    let image = images.find((element) => element.src === src);
     // Make sure image exsits in image store
     if (image) {
         let index = image.tags.findIndex((element) => element === tag);
