@@ -16,34 +16,43 @@
 
 <body>
     <header>
+        <div>temp upload</div>
+
         <h1>Image Carousel</h1>
-        <nav class="col">
+
+        <div class="container">
             <div class="row">
-                <!-- tags dropdown menu -->
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="drodownMenu1"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Tags
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <!-- List items dynamically created -->
-                    </ul>
+                <div class="col">
+                    <!-- tags dropdown menu -->
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="drodownMenu1"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Tags
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <!-- List items dynamically created -->
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <div class="row">
-                <!-- display selected tags -->
-                <p id="selectedTags"></p>
-                <!-- error message -->
-                <p id="errorTags" style="color: red"></p>
+                <div class="col">
+                    <!-- display selected tags -->
+                    <p id="selectedTags"></p>
+                    <!-- error message -->
+                    <p id="errorTags" style="color: red"></p>
+                </div>
             </div>
 
             <div class="row">
-                <!-- Submit button for tags -->
-                <button type="submit" id="submitButton" class="btn btn-primary">Search</button>
+                <div class="col text-center">
+                    <!-- Submit button for tags -->
+                    <button type="submit" id="submitButton" class="btn btn-primary">Search</button>
+                </div>
             </div>
-        </nav>
+        </div>
 
 
 
