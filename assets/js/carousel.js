@@ -107,7 +107,7 @@ buildCarousel(loadImages());
 
 // buildCarousel(imagesWithTag('test'));
 buildCarousel(imagesWithTags(['remove', 'test']));
-removeImageTag("https://placedog.net/400/507?id=22", "remove");
+// removeImageTag("https://placedog.net/400/507?id=22", "remove");
 
 
 function buildTestImageStore() {
