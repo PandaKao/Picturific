@@ -12,7 +12,7 @@ function loadImages() {
 function storeImage(image) {
     // Add an image to the image store
     let images = loadImages();
-    images.push(image);
+    images.unshift(image);
     storeImages(images);
 }
 
@@ -51,7 +51,7 @@ function addImageTag(src, tag) {
     if (image) {
         // Don't add tag if already there
         if (!image.tags.includes(tag)) {
-            image.tags.push(tag);
+            image.tags.unshift(tag);
             storeImages(images);
         }
     }
@@ -86,12 +86,30 @@ function imagesWithTag(tag) {
     return taggedImages;
 }
 
+function imagesWithTags(tagArray) {
+    // Return all images that match all of the tags from the image store
+    let images = loadImages();
+    let taggedImages = [];
+    // Don't search if tag array is empty
+    if (tagArray.length > 0) {
+        for (let i = 0; i < images.length; i++) {
+            if (tagArray.every((tag) => images[i].tags.includes(tag))) {
+                taggedImages.push(images[i]);
+            }
+        }
+    }
+    return taggedImages;
+}
+
 buildTestImageStore();
 
 buildCarousel(loadImages());
 
 // buildCarousel(imagesWithTag('test'));
-removeImageTag("https://placedog.net/400/507?id=22", "remove");
+// buildCarousel(imagesWithTags([]));
+// buildCarousel(imagesWithTags(['test']));
+buildCarousel(imagesWithTags(['dog', 'test']));
+// removeImageTag("https://placedog.net/400/507?id=22", "remove");
 
 
 function buildTestImageStore() {
@@ -99,45 +117,45 @@ function buildTestImageStore() {
     localStorage.clear();
     let image = {
         src: "https://placedog.net/400/445?id=68",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
 
     image = {
         src: "https://placedog.net/400/541?id=54",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
 
     image = {
         src: "https://placedog.net/400/532?id=118",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
     image = {
         src: "https://placedog.net/400/542?id=8",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
     image = {
         src: "https://placedog.net/400/507?id=22",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
     image = {
         src: "https://placedog.net/400/549?id=222",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
     image = {
         src: "https://placedog.net/400/493?id=113",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
 
     image = {
         src: "https://placedog.net/400/517?id=219",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
 

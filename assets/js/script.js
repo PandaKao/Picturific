@@ -70,7 +70,7 @@ submitEl.addEventListener('submit', function (event) {
     } else {
         errorEl.textContent = '';
         //shows images when tags are submitted
-        imagesWithTags(selectedTags); //need Stephen's function
+        buildCarousel(imagesWithTags(selectedTags)); //need Stephen's function
     }
 })
 
