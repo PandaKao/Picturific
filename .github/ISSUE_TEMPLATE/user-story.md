@@ -1,9 +1,8 @@
 ---
 name: User Story
 about: Default user story template
-title: ''
-labels: ''
-assignees: 
+title: 'Picturific'
+assignees: Brian Petros, Stephen Sneed, Justin Kao
 
 ---
 
@@ -24,9 +23,9 @@ assignees:
    - Users can hover over keywords for a tooltip.
     
 3. [Main Photo Carousel]
-   - The main carousel displays photos filtered by selected keywords.
+   - The main carousel displays photos with only the selected keywords.
    - Able to cycle through photos via next and previous buttons.
-   - Users can select a filter to display side carousel.
+   - Users can select a keyword to display a side carousel based on keyword.
    - Users are able to upvote or downvote keywords.
         
 4. [Side Photo Carousel]
