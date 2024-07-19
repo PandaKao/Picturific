@@ -90,9 +90,12 @@ function imagesWithTags(tagArray) {
     // Return all images that match all of the tags from the image store
     let images = loadImages();
     let taggedImages = [];
-    for (let i = 0; i < images.length; i++) {
-        if (tagArray.every((tag) => images[i].tags.includes(tag))) {
-            taggedImages.push(images[i]);
+    // Don't search if tag array is empty
+    if (tagArray.length > 0) {
+        for (let i = 0; i < images.length; i++) {
+            if (tagArray.every((tag) => images[i].tags.includes(tag))) {
+                taggedImages.push(images[i]);
+            }
         }
     }
     return taggedImages;
@@ -103,7 +106,7 @@ buildTestImageStore();
 buildCarousel(loadImages());
 
 // buildCarousel(imagesWithTag('test'));
-buildCarousel(imagesWithTags(['test', 'remove']));
+buildCarousel(imagesWithTags(['remove', 'test']));
 removeImageTag("https://placedog.net/400/507?id=22", "remove");
 
 
