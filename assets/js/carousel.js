@@ -12,7 +12,7 @@ function loadImages() {
 function storeImage(image) {
     // Add an image to the image store
     let images = loadImages();
-    images.push(image);
+    images.unshift(image);
     storeImages(images);
 }
 
@@ -51,7 +51,7 @@ function addImageTag(src, tag) {
     if (image) {
         // Don't add tag if already there
         if (!image.tags.includes(tag)) {
-            image.tags.push(tag);
+            image.tags.unshift(tag);
             storeImages(images);
         }
     }
@@ -86,11 +86,24 @@ function imagesWithTag(tag) {
     return taggedImages;
 }
 
+function imagesWithTags(tagArray) {
+    // Return all images that match all of the tags from the image store
+    let images = loadImages();
+    let taggedImages = [];
+    for (let i = 0; i < images.length; i++) {
+        if (tagArray.every((tag) => images[i].tags.includes(tag))) {
+            taggedImages.push(images[i]);
+        }
+    }
+    return taggedImages;
+}
+
 buildTestImageStore();
 
 buildCarousel(loadImages());
 
 // buildCarousel(imagesWithTag('test'));
+buildCarousel(imagesWithTags(['test', 'remove']));
 removeImageTag("https://placedog.net/400/507?id=22", "remove");
 
 
