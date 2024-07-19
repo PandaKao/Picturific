@@ -4,10 +4,12 @@ const buttonEl = document.querySelector('button');
 const dropdownMenu = document.querySelector('.dropdown-menu');
 const displayTagsEl = document.querySelector('#selectedTags');
 const errorEl = document.querySelector('#errorTags');
+const submitEl = document.querySelector('#submitButton');
 
 const maxTags = 3;
+let selectedTags = [];
 
-function createDropdown (tags) {
+function createDropdown(tags) {
     tags.forEach(function (tag) {
         const liTag = document.createElement('li');
 
@@ -26,10 +28,6 @@ function createDropdown (tags) {
     })
 }
 
-// buttonEl.addEventListener('click', () => {
-//     swiperEl.swiper.slideNext();
-// });
-
 //displays selected tags
 function updateSelectedTags() {
     let selectedTags = [];
@@ -47,18 +45,34 @@ function updateSelectedTags() {
 
     //alerts user to select up to maxTags
     if (counter > maxTags) {
-        errorEl.textContent = "Please select only up 3 tags.";
+        errorEl.textContent = 'Please select only up 3 tags.';
     } else {
-        errorEl.textContent = "";
+        errorEl.textContent = '';
     }
 
     //dynamically updates tags selected
-    displayTagsEl.textContent = 'Selected Tags: ' + selectedTags.join(', ');
+    if (counter === 0) {
+        displayTagsEl.textContent = '';
+    } else {
+        displayTagsEl.textContent = 'Selected Tags: ' + selectedTags.join(', ');
+    }
 }
 
 //event listener every time a checkbox is changed
-dropdownMenu.addEventListener('change', function(event) {
+dropdownMenu.addEventListener('change', function (event) {
     updateSelectedTags();
+})
+
+//event listener for form submission
+submitEl.addEventListener('submit', function(event) {
+    event.preventDefault();
+    if (selectedTags.length > maxTags) {
+        errorEl.textContent = 'Please select only up to 3 tags.';
+    } else {
+        errorEl.textContent = '';
+        //shows images when tags are submitted
+        imagesWithTags(selectedTags); //need Stephen's function
+    }
 })
 
 //jQuery to run on startup
