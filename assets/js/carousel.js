@@ -107,8 +107,8 @@ buildCarousel(loadImages());
 
 // buildCarousel(imagesWithTag('test'));
 // buildCarousel(imagesWithTags([]));
-buildCarousel(imagesWithTags(['test']));
-// buildCarousel(imagesWithTags(['remove', 'test']));
+// buildCarousel(imagesWithTags(['test']));
+buildCarousel(imagesWithTags(['dog', 'test']));
 // removeImageTag("https://placedog.net/400/507?id=22", "remove");
 
 
@@ -117,45 +117,45 @@ function buildTestImageStore() {
     localStorage.clear();
     let image = {
         src: "https://placedog.net/400/445?id=68",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
 
     image = {
         src: "https://placedog.net/400/541?id=54",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
 
     image = {
         src: "https://placedog.net/400/532?id=118",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
     image = {
         src: "https://placedog.net/400/542?id=8",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
     image = {
         src: "https://placedog.net/400/507?id=22",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
     image = {
         src: "https://placedog.net/400/549?id=222",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
     image = {
         src: "https://placedog.net/400/493?id=113",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
 
     image = {
         src: "https://placedog.net/400/517?id=219",
-        tags: [],
+        tags: ['dog'],
     };
     storeImage(image);
 
