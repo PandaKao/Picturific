@@ -1,5 +1,4 @@
 // swiper button click using swiper js
-const swiperEl = document.querySelector('swiper-container');
 const buttonEl = document.querySelector('button');
 const dropdownMenu = document.querySelector('.dropdown-menu');
 const displayTagsEl = document.querySelector('#selectedTags');
@@ -64,7 +63,7 @@ dropdownMenu.addEventListener('change', function (event) {
 })
 
 //event listener for form submission
-submitEl.addEventListener('submit', function(event) {
+submitEl.addEventListener('submit', function (event) {
     event.preventDefault();
     if (selectedTags.length > maxTags) {
         errorEl.textContent = 'Please select only up to 3 tags.';
