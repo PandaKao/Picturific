@@ -1,4 +1,3 @@
-// swiper button click using swiper js
 const buttonEl = document.querySelector('button');
 const dropdownMenu = document.querySelector('.dropdown-menu');
 const displayTagsEl = document.querySelector('#selectedTags');
@@ -56,6 +55,9 @@ function updateSelectedTags() {
         displayTagsEl.textContent = 'Selected Tags: ' + selectedTags.join(', ');
     }
 }
+
+//like/dislike counter 
+
 
 //event listener every time a checkbox is changed
 dropdownMenu.addEventListener('change', function (event) {
