@@ -2,7 +2,7 @@ const buttonEl = document.querySelector('button');
 const dropdownMenu = document.querySelector('.dropdown-menu');
 const displayTagsEl = document.querySelector('#selectedTags');
 const errorEl = document.querySelector('#errorTags');
-const submitEl = document.querySelector('#submitButton');
+const submitEl = document.querySelector('#tagSearch');
 
 const maxTags = 3;
 let selectedTags = [];
@@ -28,9 +28,10 @@ function createDropdown(tags) {
 
 //displays selected tags
 function updateSelectedTags() {
-    let selectedTags = [];
+    selectedTags = [];
     let counter = 0;
     const checkboxesEl = document.querySelectorAll('.dropdown-menu input[type="checkbox"]');
+
 
     //checks each checkbox if filled
     checkboxesEl.forEach(function (checkbox) {
@@ -56,6 +57,13 @@ function updateSelectedTags() {
     }
 }
 
+function clearCheckboxes() {
+    const checkboxesEl = document.querySelectorAll('.dropdown-menu input[type="checkbox"]');
+    checkboxesEl.forEach(function (checkbox) {
+        checkbox.checked = false;
+    });
+}
+
 //like/dislike counter 
 
 
@@ -69,10 +77,18 @@ submitEl.addEventListener('submit', function (event) {
     event.preventDefault();
     if (selectedTags.length > maxTags) {
         errorEl.textContent = 'Please select only up to 3 tags.';
+    } else if (selectedTags.length === 0) {
+        errorEl.textContent = 'Please select at least 1 tag.';
     } else {
+        //clears text in errorEl and displayTagsEl
         errorEl.textContent = '';
+        displayTagsEl.textContent = '';
+
         //shows images when tags are submitted
-        buildCarousel(imagesWithTags(selectedTags)); //need Stephen's function
+        buildCarousel(imagesWithTags(selectedTags));
+
+        //clears checkboxes after submission
+        clearCheckboxes();
     }
 })
 
