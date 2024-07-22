@@ -2,11 +2,13 @@ const swiperContainerEl = document.querySelector('swiper-container');
 
 function loadImages() {
     // Load all images from image store
-    let images = JSON.parse(localStorage.getItem('imageStore'));
-    if (images === null) {
-        return [];
+    let storedImages = JSON.parse(localStorage.getItem('imageStore'));
+    if (storedImages === null) {
+        // If no images found in localStorage, store default
+        storeImages(images);
+        return images;
     }
-    return images;
+    return storedImages;
 }
 
 function storeImage(image) {
@@ -31,8 +33,8 @@ function buildCarousel(images) {
     for (let i = 0; i < images.length; i++) {
         let swiperSlideEl = document.createElement('swiper-slide');
         let imgEl = document.createElement('img');
-        imgEl.style.width = '600px';
-        imgEl.style.height = '600px';
+        imgEl.style.width = '100%';
+        imgEl.style.height = '100%';
         imgEl.src = images[i].src;
         // Add tags to alt?
         swiperSlideEl.appendChild(imgEl);
@@ -101,69 +103,69 @@ function imagesWithTags(tagArray) {
     return taggedImages;
 }
 
-buildTestImageStore();
+// buildTestImageStore();
 
 buildCarousel(loadImages());
 
 // buildCarousel(imagesWithTag('test'));
 // buildCarousel(imagesWithTags([]));
 // buildCarousel(imagesWithTags(['test']));
-buildCarousel(imagesWithTags(['dog', 'test']));
+// buildCarousel(imagesWithTags(['dog', 'test']));
 // removeImageTag("https://placedog.net/400/507?id=22", "remove");
 
 
-function buildTestImageStore() {
-    // Populate image store with some test data
-    localStorage.clear();
-    let image = {
-        src: "https://placedog.net/400/445?id=68",
-        tags: ['dog'],
-    };
-    storeImage(image);
+// function buildTestImageStore() {
+//     // Populate image store with some test data
+//     localStorage.clear();
+//     let image = {
+//         src: "https://placedog.net/400/445?id=68",
+//         tags: ['dog'],
+//     };
+//     storeImage(image);
 
-    image = {
-        src: "https://placedog.net/400/541?id=54",
-        tags: ['dog'],
-    };
-    storeImage(image);
+//     image = {
+//         src: "https://placedog.net/400/541?id=54",
+//         tags: ['dog'],
+//     };
+//     storeImage(image);
 
-    image = {
-        src: "https://placedog.net/400/532?id=118",
-        tags: ['dog'],
-    };
-    storeImage(image);
-    image = {
-        src: "https://placedog.net/400/542?id=8",
-        tags: ['dog'],
-    };
-    storeImage(image);
-    image = {
-        src: "https://placedog.net/400/507?id=22",
-        tags: ['dog'],
-    };
-    storeImage(image);
-    image = {
-        src: "https://placedog.net/400/549?id=222",
-        tags: ['dog'],
-    };
-    storeImage(image);
-    image = {
-        src: "https://placedog.net/400/493?id=113",
-        tags: ['dog'],
-    };
-    storeImage(image);
+//     image = {
+//         src: "https://placedog.net/400/532?id=118",
+//         tags: ['dog'],
+//     };
+//     storeImage(image);
+//     image = {
+//         src: "https://placedog.net/400/542?id=8",
+//         tags: ['dog'],
+//     };
+//     storeImage(image);
+//     image = {
+//         src: "https://placedog.net/400/507?id=22",
+//         tags: ['dog'],
+//     };
+//     storeImage(image);
+//     image = {
+//         src: "https://placedog.net/400/549?id=222",
+//         tags: ['dog'],
+//     };
+//     storeImage(image);
+//     image = {
+//         src: "https://placedog.net/400/493?id=113",
+//         tags: ['dog'],
+//     };
+//     storeImage(image);
 
-    image = {
-        src: "https://placedog.net/400/517?id=219",
-        tags: ['dog'],
-    };
-    storeImage(image);
+//     image = {
+//         src: "https://placedog.net/400/517?id=219",
+//         tags: ['dog'],
+//     };
+//     storeImage(image);
 
-    addImageTag("https://placedog.net/400/541?id=54", "test");
-    addImageTag("https://placedog.net/400/517?id=219", "test");
-    addImageTag("https://placedog.net/400/507?id=22", "test");
-    addImageTag("https://placedog.net/400/541?id=54", "test");
-    addImageTag("https://placedog.net/400/517?id=219", "test");
-    addImageTag("https://placedog.net/400/507?id=22", "test");
-    addImageTag("https://placedog.net/400/507?id=22", "remove");
-}
+//     addImageTag("https://placedog.net/400/541?id=54", "test");
+//     addImageTag("https://placedog.net/400/517?id=219", "test");
+//     addImageTag("https://placedog.net/400/507?id=22", "test");
+//     addImageTag("https://placedog.net/400/541?id=54", "test");
+//     addImageTag("https://placedog.net/400/517?id=219", "test");
+//     addImageTag("https://placedog.net/400/507?id=22", "test");
+//     addImageTag("https://placedog.net/400/507?id=22", "remove");
+// }
