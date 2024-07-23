@@ -32,15 +32,33 @@ function buildCarousel(images) {
     }
     for (let i = 0; i < images.length; i++) {
         let swiperSlideEl = document.createElement('swiper-slide');
+        let tagSlideEl = document.createElement('div');
+        for (j = 0; j < images[i].tags.length; j++) {
+            let tagEl = document.createElement('button');
+            tagEl.classList.add('btn');
+            tagEl.classList.add('btn-lg');
+            tagEl.classList.add('btn-primary');
+            tagEl.setAttribute('type', 'submit');
+            tagEl.textContent = images[i].tags[j];
+            tagSlideEl.appendChild(tagEl);
+        }
         let imgEl = document.createElement('img');
         // changing to 100% seems to have fixed sizing issues?
+        imgEl.alt = images[i].tags.toString();
         imgEl.style.width = '100%';
         imgEl.style.height = '100%';
         imgEl.src = images[i].src;
-        // Add tags to alt?
         swiperSlideEl.appendChild(imgEl);
+        swiperSlideEl.appendChild(tagSlideEl);
         swiperContainerEl.appendChild(swiperSlideEl);
+        tagSlideEl.addEventListener('click', tagClicker);
     }
+    swiperContainerEl.swiper.slideTo(0);
+}
+
+function tagClicker (event) {
+    event.preventDefault();
+    buildCarousel(imagesWithTag(event.target.textContent));
 }
 
 function addImageTag(src, tag) {
@@ -107,69 +125,6 @@ function imagesWithTags(tagArray) {
     
 }
 
-// buildTestImageStore();
+
 //initial cube page load
 buildCarousel(imagesWithTags(JSON.parse(localStorage.getItem('userTags'))));
-
-// buildCarousel(imagesWithTag('test'));
-// buildCarousel(imagesWithTags([]));
-// buildCarousel(imagesWithTags(['test']));
-// buildCarousel(imagesWithTags(['dog', 'test']));
-// removeImageTag("https://placedog.net/400/507?id=22", "remove");
-
-
-// function buildTestImageStore() {
-//     // Populate image store with some test data
-//     localStorage.clear();
-//     let image = {
-//         src: "https://placedog.net/400/445?id=68",
-//         tags: ['dog'],
-//     };
-//     storeImage(image);
-
-//     image = {
-//         src: "https://placedog.net/400/541?id=54",
-//         tags: ['dog'],
-//     };
-//     storeImage(image);
-
-//     image = {
-//         src: "https://placedog.net/400/532?id=118",
-//         tags: ['dog'],
-//     };
-//     storeImage(image);
-//     image = {
-//         src: "https://placedog.net/400/542?id=8",
-//         tags: ['dog'],
-//     };
-//     storeImage(image);
-//     image = {
-//         src: "https://placedog.net/400/507?id=22",
-//         tags: ['dog'],
-//     };
-//     storeImage(image);
-//     image = {
-//         src: "https://placedog.net/400/549?id=222",
-//         tags: ['dog'],
-//     };
-//     storeImage(image);
-//     image = {
-//         src: "https://placedog.net/400/493?id=113",
-//         tags: ['dog'],
-//     };
-//     storeImage(image);
-
-//     image = {
-//         src: "https://placedog.net/400/517?id=219",
-//         tags: ['dog'],
-//     };
-//     storeImage(image);
-
-//     addImageTag("https://placedog.net/400/541?id=54", "test");
-//     addImageTag("https://placedog.net/400/517?id=219", "test");
-//     addImageTag("https://placedog.net/400/507?id=22", "test");
-//     addImageTag("https://placedog.net/400/541?id=54", "test");
-//     addImageTag("https://placedog.net/400/517?id=219", "test");
-//     addImageTag("https://placedog.net/400/507?id=22", "test");
-//     addImageTag("https://placedog.net/400/507?id=22", "remove");
-// }
