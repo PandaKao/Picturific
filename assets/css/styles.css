@@ -114,6 +114,11 @@ swiper-slide {
   position: relative;
 }
 
+swiper-slide button {
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
 swiper-slide img {
   display: block;
   width: 100%;
