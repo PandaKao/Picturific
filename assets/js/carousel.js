@@ -33,6 +33,7 @@ function buildCarousel(images) {
     for (let i = 0; i < images.length; i++) {
         let swiperSlideEl = document.createElement('swiper-slide');
         let imgEl = document.createElement('img');
+        // changing to 100% seems to have fixed sizing issues?
         imgEl.style.width = '100%';
         imgEl.style.height = '100%';
         imgEl.src = images[i].src;
@@ -104,8 +105,8 @@ function imagesWithTags(tagArray) {
 }
 
 // buildTestImageStore();
-
-buildCarousel(loadImages());
+//initial cube page load
+buildCarousel(imagesWithTags(JSON.parse(localStorage.getItem('userTags'))));
 
 // buildCarousel(imagesWithTag('test'));
 // buildCarousel(imagesWithTags([]));

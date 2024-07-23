@@ -1,5 +1,6 @@
 const buttonEl = document.querySelector('button');
 const dropdownMenu = document.querySelector('.dropdown-menu');
+const dropdownToggleEl = document.querySelector('.dropdown-toggle');
 const displayTagsEl = document.querySelector('#selectedTags');
 const errorEl = document.querySelector('#errorTags');
 const submitEl = document.querySelector('#tagSearch');
@@ -44,7 +45,7 @@ function updateSelectedTags() {
 
     //alerts user to select up to maxTags
     if (counter > maxTags) {
-        errorEl.textContent = 'Please select only up 3 tags.';
+        errorEl.textContent = 'Please select only up to 3 tags.';
     } else {
         errorEl.textContent = '';
     }
@@ -75,20 +76,33 @@ dropdownMenu.addEventListener('change', function (event) {
 //event listener for form submission
 submitEl.addEventListener('submit', function (event) {
     event.preventDefault();
+    //syncs up selectedTags array with user selections
+    updateSelectedTags();
+    errorEl.textContent = '';
+
     if (selectedTags.length > maxTags) {
         errorEl.textContent = 'Please select only up to 3 tags.';
     } else if (selectedTags.length === 0) {
         errorEl.textContent = 'Please select at least 1 tag.';
     } else {
+        localStorage.setItem('userTags', JSON.stringify(selectedTags));
+
         //clears text in errorEl and displayTagsEl
         errorEl.textContent = '';
         displayTagsEl.textContent = '';
 
         //shows images when tags are submitted
-        buildCarousel(imagesWithTags(selectedTags));
+        buildCarousel(imagesWithTags(JSON.parse(localStorage.getItem('userTags'))));
 
         //clears checkboxes after submission
         clearCheckboxes();
+    }
+
+    //collapse dropdown if active
+    if (dropdownToggleEl.classList.contains('show')) {
+        dropdownToggleEl.classList.remove('show');
+        dropdownMenu.classList.remove('show');
+        dropdownToggleEl.setAttribute('aria-expanded', 'false');
     }
 })
 
