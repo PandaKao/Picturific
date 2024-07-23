@@ -64,7 +64,7 @@ let images = [
         tags: ['dog', 'cat'],
     },
     {
-        src: "https://en.bcdn.biz/Images/2016/10/28/de631811-855f-47d9-aa76-f201fbe03630.jpg",
+        src: "https://en.bcdn.biz/Images/2016/10/28/9f7f2edd-2367-4c46-a95a-3c153b673be7.jpg",
         tags: ['dog', 'cat'],
     },
     {
