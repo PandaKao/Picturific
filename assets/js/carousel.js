@@ -94,14 +94,17 @@ function imagesWithTags(tagArray) {
     let images = loadImages();
     let taggedImages = [];
     // Don't search if tag array is empty
-    if (tagArray.length > 0) {
+    if ((tagArray !== null) && (tagArray.length > 0)) {
         for (let i = 0; i < images.length; i++) {
             if (tagArray.every((tag) => images[i].tags.includes(tag))) {
                 taggedImages.push(images[i]);
             }
         }
+        return taggedImages;
+    } else {
+        return images;
     }
-    return taggedImages;
+    
 }
 
 // buildTestImageStore();
