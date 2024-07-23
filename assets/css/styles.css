@@ -39,7 +39,7 @@ header #upload {
 header h1 {
   color: var(--secondary);
   margin: 0;
-  font-size: 8vw;
+  font-size: 6vw;
   line-height: 1;
   max-width: 33%;
 }
@@ -102,9 +102,10 @@ main {
 
 /* swiper */
 swiper-container {
-  width: 600px;
-  height: 600px;
+  width: 60%;
+  height: 60%;
   position: relative;
+  margin-top: 2rem;
 }
 
 swiper-slide {
