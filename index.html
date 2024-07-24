@@ -36,15 +36,14 @@
                         <!-- display selected tags -->
                         <p id="selectedTags"></p>
                     </div>
-                    <!-- error message -->
-                    <p id="errorTags"></p>
                 </div>
             </div>
-
+            <!-- error message -->
+            <p id="errorTags"></p>
             <div class="row">
                 <div class="col text-center">
                     <!-- Submit button for tags -->
-                    <button type="submit" id="submitButton" class="btn btn-primary">Search</button>
+                    <button type="submit" id="submitButton" class="btn btn-primary btn-md">Search</button>
                 </div>
             </div>
         </form>
@@ -53,10 +52,39 @@
     </header>
 
     <main>
-        <swiper-container class="mySwiper" pagination="true" effect="cube" grab-cursor="true" cube-effect-shadow="true"
-            cube-effect-slide-shadows="true" cube-effect-shadow-offset="20" cube-effect-shadow-scale="0.94">
-        </swiper-container>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col " id="prevsBtn">
+                        <button type="button" class="btn btn-primary btn-sm">Previous</button>
+                    </div>
 
+                    <div class="col-10">
+                        <h2 id="curTag"></h2>
+                    </div>
+                </div>
+
+                <swiper-container class="mySwiper" pagination="true" effect="cube" grab-cursor="true"
+                    cube-effect-shadow="true" cube-effect-slide-shadows="true" cube-effect-shadow-offset="20"
+                    cube-effect-shadow-scale="0.94">
+                </swiper-container>
+            </div>
+
+            <div class="col-md-2" id="tagHistory">
+                <div class="row">
+                    <div class="col">
+                        <h2>History</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+                </aside>
+            </div>
 
 
 
