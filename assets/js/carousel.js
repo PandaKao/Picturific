@@ -93,30 +93,23 @@ function updateTagHistory() {
     // clears existing tags
     tagHistoryList.replaceChildren();
     curTagEl.replaceChildren();
+
     if (tagHistory.length >= 1) {
         //creates tag history
         for (let i = 0; i < tagHistory.length; i++) {
             const listItem = document.createElement('li');
-            listItem.textContent = tagHistory[i];
+            listItem.textContent = tagHistory[i].join(', ');
             tagHistoryList.appendChild(listItem);
         }
-        //creates tag history for first tag click
-    // } else if (tagHistory.length === 1) {
-    //     tagHistory.unshift(userSearch);
-    //     listItem = document.createElement('li');
-    //     if (userSearch !== null) {
-    //         listItem.textContent = userSearch.join(', ');
-    //     }
-    //     tagHistoryList.appendChild(listItem);
-    } else if (userSearch != null) {
+    } else if (userSearch !== null) {
+        //returns user search if tag history is empty
         currentTagList = userSearch;
     }
 
     //creates current tag header
      const currentTags = document.createElement('h2');
     if (currentTagList) {
-        // currentTags.textContent = 'Current Tag(s): ' + tagHistory[tagHistory.length - 1];
-        currentTags.textContent = 'Current Tag(s): ' + currentTagList;
+        currentTags.textContent = 'Current Tag(s): ' + currentTagList.join(', ');
     } else if (userSearch !== null) {
         currentTags.textContent = 'Current Tag(s): ' + userSearch.join(', ');
     }
@@ -147,7 +140,7 @@ function removeImageTag(src, tag) {
         return;
     }
     let image = images.find((element) => element.src === src);
-    // Make sure image exsits in image store
+    // Make sure image exists in image store
     if (image) {
         let index = image.tags.findIndex((element) => element === tag);
         if (index >= 0) {
