@@ -1,4 +1,14 @@
 const swiperContainerEl = document.querySelector('swiper-container');
+const prevsBtnEl = document.querySelector('#prevsBtn');
+
+prevsBtnEl.addEventListener('click', prevsBtnClick);
+function prevsBtnClick(event) {
+    event.preventDefault();
+    if (tagHistory.length > 0) {
+        let previousTags = tagHistory.pop();
+        console.log(previousTags);
+    }
+}
 
 //Global array to store history of clicked tags
 let tagHistory = [];
