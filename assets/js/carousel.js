@@ -8,15 +8,17 @@ function prevsBtnClick(event) {
         // if there is a tag history, pop the last tag(s) and store in current tags 
         // build carousel and save current tags in local store
         let previousTags = tagHistory.pop();
+        localStorage.setItem('tagHistory', JSON.stringify(tagHistory));
         currentTagList = previousTags;
-        localStorage.setItem('userTags', JSON.stringify(currentTagList));
+        localStorage.setItem('currentTags', JSON.stringify(currentTagList));
 
         updateTagHistory();
         buildCarousel(imagesWithTags(currentTagList));
     } else {
         // else no history so clear current tags and local store and display all images in carousel
-        currentTagList = '';
-        localStorage.removeItem('userTags');
+        currentTagList = [];
+        localStorage.setItem('currentTags', JSON.stringify(currentTagList));
+        // localStorage.removeItem('currentTags');
 
         updateTagHistory();
         buildCarousel(loadImages());
@@ -24,8 +26,15 @@ function prevsBtnClick(event) {
 }
 
 //Global array to store history of clicked tags
-let tagHistory = [];
-let currentTagList = JSON.parse(localStorage.getItem('userTags'));;
+// let tagHistory = [];
+let tagHistory = JSON.parse(localStorage.getItem('tagHistory'));
+if (tagHistory === null) {
+    tagHistory = [];
+}
+let currentTagList = JSON.parse(localStorage.getItem('currentTags'));
+if (currentTagList === null) {
+    currentTagList = [];
+}
 
 function loadImages() {
     // Load all images from image store
@@ -88,21 +97,22 @@ function tagClicker(event) {
     const clickedTag = event.target.textContent;
 
     // if there are current tags, push them to history
-    if (currentTagList) {
+    if (currentTagList.length > 0) {
         tagHistory.push(currentTagList);
+        localStorage.setItem('tagHistory', JSON.stringify(tagHistory));
     }
     // set current tag to clicked tag and save in local store
     currentTagList = [clickedTag];
-    localStorage.setItem('userTags', JSON.stringify(currentTagList));
+    localStorage.setItem('currentTags', JSON.stringify(currentTagList));
 
     updateTagHistory();
-    buildCarousel(imagesWithTag(clickedTag));
+    buildCarousel(imagesWithTags(currentTagList));
 }
 
 function updateTagHistory() {
     const tagHistoryList = document.querySelector('#tagHistory ul');
     const curTagEl = document.querySelector('#curTag');
-    const userSearch = JSON.parse(localStorage.getItem('userTags'));
+    const userSearch = JSON.parse(localStorage.getItem('currentTags'));
     // clears existing tags
     tagHistoryList.replaceChildren();
     curTagEl.replaceChildren();
@@ -117,7 +127,7 @@ function updateTagHistory() {
 
 
     // if there is a current tag, build current tag element
-    if (currentTagList) {
+    if (currentTagList.length > 0) {
         //create current tag header
         const currentTags = document.createElement('h2');
         currentTags.textContent = 'Current Tag(s): ' + currentTagList.join(', ');
@@ -190,4 +200,4 @@ function imagesWithTags(tagArray) {
 
 
 //initial cube page load
-buildCarousel(imagesWithTags(JSON.parse(localStorage.getItem('userTags'))));
+buildCarousel(imagesWithTags(JSON.parse(localStorage.getItem('currentTags'))));
