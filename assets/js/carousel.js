@@ -84,26 +84,32 @@ function updateTagHistory() {
     const userSearch = JSON.parse(localStorage.getItem('userTags'));
     // clears existing tags
     tagHistoryList.replaceChildren();
+    curTagEl.replaceChildren();
 
 
     if (tagHistory.length > 1) {
+        //creates tag history
         for (let i = 0; i < tagHistory.length - 1; i++) {
             const listItem = document.createElement('li');
             listItem.textContent = tagHistory[i];
             tagHistoryList.appendChild(listItem);
         }
+    //creates tag history for first tag click
     } else if (tagHistory.length === 1) {
         tagHistory.unshift(userSearch);
         listItem = document.createElement('li');
         listItem.textContent = userSearch.join(', ');
         tagHistoryList.appendChild(listItem);
-    } else if (tagHistory.length === 0) {
-        currentTags = document.createElement('h2');
-        currentTags.textContent = 'Current Tag(s): ' + userSearch.join(', ');
-        curTagEl.appendChild(currentTags);
     }
 
-
+    //creates current tag header
+    currentTags = document.createElement('h2');
+    if (tagHistory.length > 0) {
+        currentTags.textContent = 'Current Tag(s): ' + tagHistory[tagHistory.length - 1];
+    } else {
+        currentTags.textContent = 'Current Tag(s): ' + userSearch.join(', ');
+    }
+    curTagEl.appendChild(currentTags);
 }
 
 function addImageTag(src, tag) {

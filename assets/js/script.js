@@ -108,4 +108,5 @@ submitEl.addEventListener('submit', function (event) {
 $(document).ready(function () {
     $('.dropdown-toggle').dropdown();
     createDropdown(tags);
+    updateTagHistory();
 });
