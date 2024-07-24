@@ -87,6 +87,10 @@ header .container {
   color: red;
 }
 
+.submit-section {
+  width: 100%;
+}
+
 
 nav {
   display: flex;
