@@ -16,7 +16,10 @@
 
 <body>
     <header>
-        <div id="upload">temp upload</div>
+        <div id="upload">
+            <button class="btn btn-default btn-primary btn-md" data-bs-toggle="modal"
+                data-bs-target="//match id modal">Upload</button>
+        </div>
 
         <h1>Picturific</h1>
         <form id="tagSearch" class="container">
@@ -68,7 +71,7 @@
                 </swiper-container>
             </div>
 
-            <div class="col-md-2" id="tagHistory">
+            <div class="col-md-2 container" id="tagHistory">
                 <div class="row">
                     <div class="col">
                         <h2>History</h2>
@@ -77,7 +80,8 @@
 
                 <div class="row">
                     <div class="col">
-                        <ul>
+                        <ul id="TagHistoryText">
+                            <!-- List dynamically created -->
                         </ul>
                     </div>
                 </div>

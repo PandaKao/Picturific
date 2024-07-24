@@ -110,7 +110,7 @@ function updateTagHistory() {
         //if there is a tag history build tag history elements
         for (let i = 0; i < tagHistory.length; i++) {
             const listItem = document.createElement('li');
-            listItem.textContent = tagHistory[i];
+            listItem.textContent = tagHistory[i].join(', ');
             tagHistoryList.appendChild(listItem);
         }
     }
@@ -120,7 +120,7 @@ function updateTagHistory() {
     if (currentTagList) {
         //create current tag header
         const currentTags = document.createElement('h2');
-        currentTags.textContent = 'Current Tag(s): ' + currentTagList;
+        currentTags.textContent = 'Current Tag(s): ' + currentTagList.join(', ');
         curTagEl.appendChild(currentTags);
     }
 }

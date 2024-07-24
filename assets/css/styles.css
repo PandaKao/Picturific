@@ -29,13 +29,16 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--primary);
+  background: linear-gradient(
+    rgba(68, 88, 119, 1) 0%,
+    rgba(49, 52, 61, 0.3) 100%);
 }
 
-header #upload {
+#upload {
   max-width: 33%;
-  color: var(--secondary);
+  padding-left: 1rem;
 }
+
 header h1 {
   color: var(--secondary);
   margin: 0;
@@ -56,6 +59,12 @@ header .container {
   padding: 0.5rem;
   width: auto;
   max-width: 33%;
+}
+
+main {
+  background: linear-gradient(
+    rgba(49, 52, 61, 0.3) 0%,
+    rgba(68, 88, 119, 1) 100%);
 }
 
 .tags-section {
@@ -116,10 +125,19 @@ main {
 }
 
 #tagHistory {
-  border: black 0.5px solid;
+  border-style: var(--primary);
+  outline: 2px solid var(--primary);
+  border-radius: 0.2em;
   color: var(--secondary);
   text-align: center;
   height: 70%;
+  background: linear-gradient(
+    rgba(68, 88, 119, 1) 0%,
+    rgba(49, 52, 61, 0.3) 100%);
+}
+
+#tagHistory h2 {
+  font-size: 3vw;
 }
 
 #tagHistory ul {
@@ -127,6 +145,7 @@ main {
   padding-left: 0.5rem;
   text-align: left;
   list-style-type: none;
+  font-size: 2vw;
 }
 
 /* swiper */
