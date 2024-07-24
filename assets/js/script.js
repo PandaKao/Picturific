@@ -103,7 +103,12 @@ submitEl.addEventListener('submit', function (event) {
         buildCarousel(imagesWithTags(JSON.parse(localStorage.getItem('userTags'))));
         updateTagHistory();
 
-
+        
+        if (currentTagList) {
+            tagHistory.push(currentTagList);
+        }
+        currentTagList = selectedTags;
+        updateTagHistory();
         //clears checkboxes after submission
         clearCheckboxes();
     }

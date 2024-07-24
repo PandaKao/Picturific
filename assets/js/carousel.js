@@ -1,8 +1,21 @@
 const swiperContainerEl = document.querySelector('swiper-container');
+const prevsBtnEl = document.querySelector('#prevsBtn');
+
+prevsBtnEl.addEventListener('click', prevsBtnClick);
+function prevsBtnClick(event) {
+    event.preventDefault();
+    if (tagHistory.length > 0) {
+        let previousTags = tagHistory.pop();
+        currentTagList = previousTags;
+        updateTagHistory();
+        buildCarousel(imagesWithTags(previousTags));
+    }
+}
 
 //Global array to store history of clicked tags
 let tagHistory = [];
 let currentTagsList = [];
+let currentTagList;
 
 function loadImages() {
     // Load all images from image store
@@ -64,10 +77,7 @@ function tagClicker(event) {
     event.preventDefault();
     const clickedTag = event.target.textContent;
 
-    if (currentTagsList.length > 0) {
-        tagHistory.push([currentTagsList]);
-    }
-    currentTagsList = [clickedTag];
+    tagHistory.push(clickedTag);
     updateTagHistory();
     buildCarousel(imagesWithTag(clickedTag));
 }
@@ -80,16 +90,26 @@ function updateTagHistory() {
     tagHistoryList.replaceChildren();
     curTagEl.replaceChildren();
 
-    for (let i = 0; i < tagHistory.length; i++) {
-        const listItem = document.createElement('li');
-        listItem.textContent = tagHistory[i].join(', ');
+
+    if (tagHistory.length > 1) {
+        //creates tag history
+        for (let i = 0; i < tagHistory.length - 1; i++) {
+            const listItem = document.createElement('li');
+            listItem.textContent = tagHistory[i];
+            tagHistoryList.appendChild(listItem);
+        }
+    //creates tag history for first tag click
+    } else if (tagHistory.length === 1) {
+        tagHistory.unshift(userSearch);
+        listItem = document.createElement('li');
+        listItem.textContent = userSearch.join(', ');
         tagHistoryList.appendChild(listItem);
     }
 
     //creates current tag header
-    const currentTags = document.createElement('h2');
-    if (currentTagsList.length > 0) {
-        currentTags.textContent = 'Current Tag(s): ' + currentTagsList.join(', ');
+    currentTags = document.createElement('h2');
+    if (tagHistory.length > 0) {
+        currentTags.textContent = 'Current Tag(s): ' + tagHistory[tagHistory.length - 1];
     } else {
         currentTags.textContent = 'Current Tag(s): ' + userSearch.join(', ');
     }
