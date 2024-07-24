@@ -5,16 +5,27 @@ prevsBtnEl.addEventListener('click', prevsBtnClick);
 function prevsBtnClick(event) {
     event.preventDefault();
     if (tagHistory.length > 0) {
+        // if there is a tag history, pop the last tag(s) and store in current tags 
+        // build carousel and save current tags in local store
         let previousTags = tagHistory.pop();
         currentTagList = previousTags;
+        localStorage.setItem('userTags', JSON.stringify(currentTagList));
+
         updateTagHistory();
-        buildCarousel(imagesWithTags(previousTags));
+        buildCarousel(imagesWithTags(currentTagList));
+    } else {
+        // else no history so clear current tags and local store and display all images in carousel
+        currentTagList = '';
+        localStorage.removeItem('userTags');
+
+        updateTagHistory();
+        buildCarousel(loadImages());
     }
 }
 
 //Global array to store history of clicked tags
 let tagHistory = [];
-let currentTagList;
+let currentTagList = JSON.parse(localStorage.getItem('userTags'));;
 
 function loadImages() {
     // Load all images from image store
@@ -76,11 +87,13 @@ function tagClicker(event) {
     event.preventDefault();
     const clickedTag = event.target.textContent;
 
-    // tagHistory.push(clickedTag);
+    // if there are current tags, push them to history
     if (currentTagList) {
         tagHistory.push(currentTagList);
     }
+    // set current tag to clicked tag and save in local store
     currentTagList = [clickedTag];
+    localStorage.setItem('userTags', JSON.stringify(currentTagList));
 
     updateTagHistory();
     buildCarousel(imagesWithTag(clickedTag));
@@ -94,33 +107,22 @@ function updateTagHistory() {
     tagHistoryList.replaceChildren();
     curTagEl.replaceChildren();
     if (tagHistory.length >= 1) {
-        //creates tag history
+        //if there is a tag history build tag history elements
         for (let i = 0; i < tagHistory.length; i++) {
             const listItem = document.createElement('li');
             listItem.textContent = tagHistory[i];
             tagHistoryList.appendChild(listItem);
         }
-        //creates tag history for first tag click
-    // } else if (tagHistory.length === 1) {
-    //     tagHistory.unshift(userSearch);
-    //     listItem = document.createElement('li');
-    //     if (userSearch !== null) {
-    //         listItem.textContent = userSearch.join(', ');
-    //     }
-    //     tagHistoryList.appendChild(listItem);
-    } else if (userSearch != null) {
-        currentTagList = userSearch;
     }
 
-    //creates current tag header
-     const currentTags = document.createElement('h2');
+
+    // if there is a current tag, build current tag element
     if (currentTagList) {
-        // currentTags.textContent = 'Current Tag(s): ' + tagHistory[tagHistory.length - 1];
+        //create current tag header
+        const currentTags = document.createElement('h2');
         currentTags.textContent = 'Current Tag(s): ' + currentTagList;
-    } else if (userSearch !== null) {
-        currentTags.textContent = 'Current Tag(s): ' + userSearch.join(', ');
+        curTagEl.appendChild(currentTags);
     }
-    curTagEl.appendChild(currentTags);
 }
 
 function addImageTag(src, tag) {
@@ -173,7 +175,6 @@ function imagesWithTags(tagArray) {
     // Return all images that match all of the tags from the image store
     let images = loadImages();
     let taggedImages = [];
-    // Don't search if tag array is empty
     if ((tagArray !== null) && (tagArray.length > 0)) {
         for (let i = 0; i < images.length; i++) {
             if (tagArray.every((tag) => images[i].tags.includes(tag))) {
@@ -182,6 +183,7 @@ function imagesWithTags(tagArray) {
         }
         return taggedImages;
     } else {
+        // return all images if tag array is empty
         return images;
     }
 }
