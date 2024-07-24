@@ -89,20 +89,8 @@ submitEl.addEventListener('submit', function (event) {
         errorEl.textContent = '';
         displayTagsEl.textContent = '';
 
-        
-        //updates tag history
-        if (currentTagsList.length > 0) {
-            tagHistory.push([currentTagsList]);
-        }
-
-        //updates current tag list
-        currentTagsList = [selectedTags];
-
-
         //shows images when tags are submitted
         buildCarousel(imagesWithTags(JSON.parse(localStorage.getItem('userTags'))));
-        updateTagHistory();
-
         
         if (currentTagList) {
             tagHistory.push(currentTagList);
