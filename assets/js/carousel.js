@@ -1,7 +1,20 @@
 const swiperContainerEl = document.querySelector('swiper-container');
+const prevsBtnEl = document.querySelector('#prevsBtn');
+
+prevsBtnEl.addEventListener('click', prevsBtnClick);
+function prevsBtnClick(event) {
+    event.preventDefault();
+    if (tagHistory.length > 0) {
+        let previousTags = tagHistory.pop();
+        currentTagList = previousTags;
+        updateTagHistory();
+        buildCarousel(imagesWithTags(previousTags));
+    }
+}
 
 //Global array to store history of clicked tags
 let tagHistory = [];
+let currentTagList;
 
 function loadImages() {
     // Load all images from image store
@@ -63,7 +76,12 @@ function tagClicker(event) {
     event.preventDefault();
     const clickedTag = event.target.textContent;
 
-    tagHistory.push(clickedTag);
+    // tagHistory.push(clickedTag);
+    if (currentTagList) {
+        tagHistory.push(currentTagList);
+    }
+    currentTagList = [clickedTag];
+
     updateTagHistory();
     buildCarousel(imagesWithTag(clickedTag));
 }
@@ -75,28 +93,31 @@ function updateTagHistory() {
     // clears existing tags
     tagHistoryList.replaceChildren();
     curTagEl.replaceChildren();
-
-
-    if (tagHistory.length > 1) {
+    if (tagHistory.length >= 1) {
         //creates tag history
-        for (let i = 0; i < tagHistory.length - 1; i++) {
+        for (let i = 0; i < tagHistory.length; i++) {
             const listItem = document.createElement('li');
             listItem.textContent = tagHistory[i];
             tagHistoryList.appendChild(listItem);
         }
-    //creates tag history for first tag click
-    } else if (tagHistory.length === 1) {
-        tagHistory.unshift(userSearch);
-        listItem = document.createElement('li');
-        listItem.textContent = userSearch.join(', ');
-        tagHistoryList.appendChild(listItem);
+        //creates tag history for first tag click
+    // } else if (tagHistory.length === 1) {
+    //     tagHistory.unshift(userSearch);
+    //     listItem = document.createElement('li');
+    //     if (userSearch !== null) {
+    //         listItem.textContent = userSearch.join(', ');
+    //     }
+    //     tagHistoryList.appendChild(listItem);
+    } else if (userSearch != null) {
+        currentTagList = userSearch;
     }
 
     //creates current tag header
-    currentTags = document.createElement('h2');
-    if (tagHistory.length > 0) {
-        currentTags.textContent = 'Current Tag(s): ' + tagHistory[tagHistory.length - 1];
-    } else {
+     const currentTags = document.createElement('h2');
+    if (currentTagList) {
+        // currentTags.textContent = 'Current Tag(s): ' + tagHistory[tagHistory.length - 1];
+        currentTags.textContent = 'Current Tag(s): ' + currentTagList;
+    } else if (userSearch !== null) {
         currentTags.textContent = 'Current Tag(s): ' + userSearch.join(', ');
     }
     curTagEl.appendChild(currentTags);
