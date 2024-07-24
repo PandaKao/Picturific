@@ -32,18 +32,6 @@ let images = [
         tags: ['cat'],
     },
     {
-        src: "https://placedog.net/400/445?id=68",
-        tags: ['dog'],
-    },
-    {
-        src: "https://placedog.net/400/541?id=54",
-        tags: ['dog'],
-    },
-    {
-        src: "https://placedog.net/400/532?id=118",
-        tags: ['dog'],
-    },
-    {
         src: "https://www.bhg.com/thmb/oDnjlrHprd67aYvinrMfQgVUPtQ=/5332x0/filters:no_upscale():strip_icc()/BHG-spider-plant-c0e0fdd5ec6e4c1588998ce3167f6579.jpg",
         tags: ['plant'],
     },
