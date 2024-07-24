@@ -84,7 +84,7 @@ submitEl.addEventListener('submit', function (event) {
         errorEl.textContent = 'Please select at least 1 tag.';
     } else {
         // save selected tags in local store
-        localStorage.setItem('userTags', JSON.stringify(selectedTags));
+        localStorage.setItem('currentTags', JSON.stringify(selectedTags));
 
         //clears text in errorEl and displayTagsEl
         errorEl.textContent = '';
@@ -94,8 +94,9 @@ submitEl.addEventListener('submit', function (event) {
         buildCarousel(imagesWithTags(selectedTags));
 
         // if there are current tags, push them to history
-        if (currentTagList) {
+        if (currentTagList.length > 0) {
             tagHistory.push(currentTagList);
+            localStorage.setItem('tagHistory', JSON.stringify(tagHistory));
         }
         // store selected tags as current tags
         currentTagList = selectedTags;
