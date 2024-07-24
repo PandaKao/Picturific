@@ -65,8 +65,6 @@ function clearCheckboxes() {
     });
 }
 
-//like/dislike counter 
-
 
 //event listener every time a checkbox is changed
 dropdownMenu.addEventListener('change', function (event) {
