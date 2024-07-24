@@ -106,12 +106,11 @@ function updateTagHistory() {
     // clears existing tags
     tagHistoryList.replaceChildren();
     curTagEl.replaceChildren();
-
     if (tagHistory.length >= 1) {
         //if there is a tag history build tag history elements
         for (let i = 0; i < tagHistory.length; i++) {
             const listItem = document.createElement('li');
-            listItem.textContent = tagHistory[i].join(', ');
+            listItem.textContent = tagHistory[i];
             tagHistoryList.appendChild(listItem);
         }
     }
@@ -150,7 +149,7 @@ function removeImageTag(src, tag) {
         return;
     }
     let image = images.find((element) => element.src === src);
-    // Make sure image exists in image store
+    // Make sure image exsits in image store
     if (image) {
         let index = image.tags.findIndex((element) => element === tag);
         if (index >= 0) {
