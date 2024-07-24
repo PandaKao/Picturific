@@ -2,6 +2,7 @@ const swiperContainerEl = document.querySelector('swiper-container');
 
 //Global array to store history of clicked tags
 let tagHistory = [];
+let currentTagsList = [];
 
 function loadImages() {
     // Load all images from image store
@@ -63,7 +64,10 @@ function tagClicker(event) {
     event.preventDefault();
     const clickedTag = event.target.textContent;
 
-    tagHistory.push(clickedTag);
+    if (currentTagsList.length > 0) {
+        tagHistory.push([currentTagsList]);
+    }
+    currentTagsList = [clickedTag];
     updateTagHistory();
     buildCarousel(imagesWithTag(clickedTag));
 }
@@ -76,26 +80,16 @@ function updateTagHistory() {
     tagHistoryList.replaceChildren();
     curTagEl.replaceChildren();
 
-
-    if (tagHistory.length > 1) {
-        //creates tag history
-        for (let i = 0; i < tagHistory.length - 1; i++) {
-            const listItem = document.createElement('li');
-            listItem.textContent = tagHistory[i];
-            tagHistoryList.appendChild(listItem);
-        }
-    //creates tag history for first tag click
-    } else if (tagHistory.length === 1) {
-        tagHistory.unshift(userSearch);
-        listItem = document.createElement('li');
-        listItem.textContent = userSearch.join(', ');
+    for (let i = 0; i < tagHistory.length; i++) {
+        const listItem = document.createElement('li');
+        listItem.textContent = tagHistory[i].join(', ');
         tagHistoryList.appendChild(listItem);
     }
 
     //creates current tag header
-    currentTags = document.createElement('h2');
-    if (tagHistory.length > 0) {
-        currentTags.textContent = 'Current Tag(s): ' + tagHistory[tagHistory.length - 1];
+    const currentTags = document.createElement('h2');
+    if (currentTagsList.length > 0) {
+        currentTags.textContent = 'Current Tag(s): ' + currentTagsList.join(', ');
     } else {
         currentTags.textContent = 'Current Tag(s): ' + userSearch.join(', ');
     }
