@@ -1,5 +1,8 @@
 const swiperContainerEl = document.querySelector('swiper-container');
 
+//Global array to store history of clicked tags
+let tagHistory = [];
+
 function loadImages() {
     // Load all images from image store
     let storedImages = JSON.parse(localStorage.getItem('imageStore'));
@@ -36,7 +39,7 @@ function buildCarousel(images) {
         for (j = 0; j < images[i].tags.length; j++) {
             let tagEl = document.createElement('button');
             tagEl.classList.add('btn');
-            tagEl.classList.add('btn-lg');
+            tagEl.classList.add('btn-md');
             tagEl.classList.add('btn-primary');
             tagEl.setAttribute('type', 'submit');
             tagEl.textContent = images[i].tags[j];
@@ -56,9 +59,41 @@ function buildCarousel(images) {
     swiperContainerEl.swiper.slideTo(0);
 }
 
-function tagClicker (event) {
+function tagClicker(event) {
     event.preventDefault();
-    buildCarousel(imagesWithTag(event.target.textContent));
+    const clickedTag = event.target.textContent;
+
+    tagHistory.push(clickedTag);
+    updateTagHistory();
+    buildCarousel(imagesWithTag(clickedTag));
+}
+
+function updateTagHistory() {
+    const tagHistoryList = document.querySelector('#tagHistory ul');
+    const curTagEl = document.querySelector('#curTag');
+    const userSearch = JSON.parse(localStorage.getItem('userTags'));
+    // clears existing tags
+    tagHistoryList.replaceChildren();
+
+
+    if (tagHistory.length > 1) {
+        for (let i = 0; i < tagHistory.length - 1; i++) {
+            const listItem = document.createElement('li');
+            listItem.textContent = tagHistory[i];
+            tagHistoryList.appendChild(listItem);
+        }
+    } else if (tagHistory.length === 1) {
+        tagHistory.unshift(userSearch);
+        listItem = document.createElement('li');
+        listItem.textContent = userSearch.join(', ');
+        tagHistoryList.appendChild(listItem);
+    } else if (tagHistory.length === 0) {
+        currentTags = document.createElement('h2');
+        currentTags.textContent = 'Current Tag(s): ' + userSearch.join(', ');
+        curTagEl.appendChild(currentTags);
+    }
+
+
 }
 
 function addImageTag(src, tag) {
@@ -122,7 +157,6 @@ function imagesWithTags(tagArray) {
     } else {
         return images;
     }
-    
 }
 
 
