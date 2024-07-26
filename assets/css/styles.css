@@ -90,7 +90,8 @@ main {
   color: var(--secondary);
 }
 
-#errorTags {
+#errorTags,
+#submitTagsError {
   margin-bottom: 0.2rem;
   text-align: center;
   color: red;
