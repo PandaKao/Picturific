@@ -22,25 +22,7 @@ function createDropdown(tags) {
         labelTag.appendChild(checkboxEl);
         labelTag.appendChild(labelText);
         liTag.appendChild(labelTag);
-        dropdownMenu.appendChild(liTag);
-    })
-}
-
-function createModalTagsList(tags) {
-    tags.forEach(function (tag) {
-        const liTag = document.createElement('li');
-
-        const labelTag = document.createElement('label');
-        labelTag.classList.add('dropdown-item');
-        let labelText = document.createTextNode(` ${tag}`);
-
-        const checkboxEl = document.createElement('input');
-        checkboxEl.type = 'checkbox';
-        checkboxEl.value = tag;
-
-        labelTag.appendChild(checkboxEl);
-        labelTag.appendChild(labelText);
-        liTag.appendChild(labelTag);
+        dropdownMenu.appendChild(liTag.cloneNode(true));
         modalTagListEl.appendChild(liTag);
     })
 }
@@ -155,6 +137,5 @@ submitEl.addEventListener('submit', function (event) {
 $(document).ready(function () {
     $('.dropdown-toggle').dropdown();
     createDropdown(tags);
-    createModalTagsList(tags);
     updateTagHistory();
 });
