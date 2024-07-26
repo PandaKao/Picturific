@@ -159,6 +159,11 @@ main {
   font-size: 2vw;
 }
 
+.modalTagsList {
+  list-style-type: none;
+  padding-left: 0.5rem;
+}
+
 /* swiper */
 swiper-container {
   flex: 1;
