@@ -18,8 +18,189 @@
     <header>
         <div id="upload">
             <button class="btn btn-default btn-primary btn-md" data-bs-toggle="modal"
-                data-bs-target="//match id modal">Upload</button>
+                data-bs-target="#myModal">Upload</button>
+
+
         </div>
+
+              <!-- start of modal -->
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header MAIN -->
+            <div class="modal-header">
+              <h4 class="modal-title">Create your own picture box...</h4>
+  
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+              ></button>
+            </div>
+  
+            <!-- Modal body MAIN -->
+            <div class="modal-body">
+              <div class="mb-3">
+                <div>
+                  <p>
+                    Submit one image at a time... and don't forget to assign
+                    keywords!
+                  </p>
+                </div>
+  
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="modboxAnimal"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    animal
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    architecture
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    art
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    cat
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    dog
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    food
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    people
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    plant
+                  </label>
+                </div>
+  
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    scenery
+                  </label>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Copy & paste image address</h4>
+            </div>
+  
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="mb-3">
+                <p>
+                  Right-click image in browser and select "Copy image address"
+                </p>
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"
+                  >Paste image address/url below...</label
+                >
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
+  
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#myModal"
+              >
+                Add Picture
+              </button>
+  
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- end of modal -->
 
         <h1>Picturific</h1>
         <form id="tagSearch" class="container">
