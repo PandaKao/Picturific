@@ -1,11 +1,10 @@
 const buttonEl = document.querySelector('button');
 const dropdownMenu = document.querySelector('.dropdown-menu');
 const dropdownToggleEl = document.querySelector('.dropdown-toggle');
-const displayTagsEl = document.querySelector('#selectedTags');
-const errorEl = document.querySelector('#errorTags');
 const submitEl = document.querySelector('#tagSearch');
+const clearEl = document.querySelector('#clearButton');
 
-const maxTags = 3;
+// const maxTags = 3;
 let selectedTags = [];
 
 function createDropdown(tags) {
@@ -28,10 +27,9 @@ function createDropdown(tags) {
 }
 
 //displays selected tags
-function updateSelectedTags() {
+function updateSelectedTags(displayTagsEl) {
     selectedTags = [];
-    let counter = 0;
-    const checkboxesEl = document.querySelectorAll('.dropdown-menu input[type="checkbox"]');
+    const checkboxesEl = document.querySelectorAll('input[type="checkbox"]');
 
 
     //checks each checkbox if filled
@@ -39,70 +37,89 @@ function updateSelectedTags() {
         if (checkbox.checked) {
             //adds checkbox value to selectedTags array
             selectedTags.push(checkbox.value);
-            counter++;
         }
     });
 
-    //alerts user to select up to maxTags
-    if (counter > maxTags) {
-        errorEl.textContent = 'Please select only up to 3 tags.';
-    } else {
-        errorEl.textContent = '';
-    }
+    displaySelectedTags(displayTagsEl);
+}
 
-    //dynamically updates tags selected
-    if (counter === 0) {
+function displaySelectedTags(displayTagsEl) {
+    if (selectedTags.length === 0) {
         displayTagsEl.textContent = '';
     } else {
         displayTagsEl.textContent = 'Selected Tags: ' + selectedTags.join(', ');
     }
 }
 
+function validateTagSelection(errorEl) {
+    const maxTags = 3;
+    if (selectedTags.length > maxTags) {
+        errorEl.textContent = `Please select only up to ${maxTags} tags.`;
+        return false;
+    } else if (selectedTags.length === 0) {
+        errorEl.textContent = 'Please select at least 1 tag.'
+        return false;
+    } else {
+        errorEl.textContent = '';
+        return true;
+    }
+}
+
 function clearCheckboxes() {
-    const checkboxesEl = document.querySelectorAll('.dropdown-menu input[type="checkbox"]');
+    const checkboxesEl = document.querySelectorAll('input[type="checkbox"]');
     checkboxesEl.forEach(function (checkbox) {
         checkbox.checked = false;
     });
 }
 
+function creationAndReset() {
+    localStorage.setItem('currentTags', JSON.stringify(selectedTags));
+
+    //shows images when tags are submitted
+    buildCarousel(imagesWithTags(selectedTags));
+
+    // if there are current tags, push them to history
+    if (currentTagList.length > 0) {
+        tagHistory.push(currentTagList);
+        localStorage.setItem('tagHistory', JSON.stringify(tagHistory));
+    }
+
+    // store selected tags as current tags
+    currentTagList = selectedTags;
+    updateTagHistory();
+    //clears checkboxes after submission
+    clearCheckboxes();
+}
 
 //event listener every time a checkbox is changed
 dropdownMenu.addEventListener('change', function (event) {
-    updateSelectedTags();
-})
+    const displayTagsEl = document.querySelector('#selectedTags');
+    updateSelectedTags(displayTagsEl);
+});
+
+//event listener to clear tags
+clearEl.addEventListener('click', function (event) {
+    event.preventDefault();
+    const displayTagsEl = document.querySelector('#selectedTags');
+
+    clearCheckboxes();
+    updateSelectedTags(displayTagsEl);
+});
 
 //event listener for form submission
 submitEl.addEventListener('submit', function (event) {
     event.preventDefault();
+    const displayTagsEl = document.querySelector('#selectedTags');
+    const errorEl = document.querySelector('#errorTags');
+
     //syncs up selectedTags array with user selections
-    updateSelectedTags();
-    errorEl.textContent = '';
+    updateSelectedTags(displayTagsEl);
 
-    if (selectedTags.length > maxTags) {
-        errorEl.textContent = 'Please select only up to 3 tags.';
-    } else if (selectedTags.length === 0) {
-        errorEl.textContent = 'Please select at least 1 tag.';
-    } else {
-        // save selected tags in local store
-        localStorage.setItem('currentTags', JSON.stringify(selectedTags));
+    if (validateTagSelection(errorEl)) {
+        creationAndReset();
 
-        //clears text in errorEl and displayTagsEl
-        errorEl.textContent = '';
+        //clears displayTagsEl
         displayTagsEl.textContent = '';
-
-        //shows images when tags are submitted
-        buildCarousel(imagesWithTags(selectedTags));
-
-        // if there are current tags, push them to history
-        if (currentTagList.length > 0) {
-            tagHistory.push(currentTagList);
-            localStorage.setItem('tagHistory', JSON.stringify(tagHistory));
-        }
-        // store selected tags as current tags
-        currentTagList = selectedTags;
-        updateTagHistory();
-        //clears checkboxes after submission
-        clearCheckboxes();
     }
 
     //collapse dropdown if active
