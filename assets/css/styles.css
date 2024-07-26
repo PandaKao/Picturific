@@ -97,7 +97,18 @@ main {
 }
 
 .submit-section {
+  display: flex;
+  justify-content: flex-end;
   width: 100%;
+}
+
+#clearButton {
+  margin-right: 0.5rem;
+  width: 50%;
+}
+
+#submitButton {
+  margin-left: 0.5rem;
 }
 
 

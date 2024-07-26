@@ -1,6 +1,8 @@
 const swiperContainerEl = document.querySelector('swiper-container');
 const prevsBtnEl = document.querySelector('#prevsBtn');
 
+
+
 prevsBtnEl.addEventListener('click', prevsBtnClick);
 function prevsBtnClick(event) {
     event.preventDefault();
