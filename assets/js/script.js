@@ -4,6 +4,9 @@ const dropdownToggleEl = document.querySelector('.dropdown-toggle');
 const submitEl = document.querySelector('#tagSearch');
 const clearEl = document.querySelector('#clearButton');
 const modalTagListEl = document.querySelector('.modalTagsList');
+const displayTagsEl = document.querySelector('#selectedTags');
+const errorEl = document.querySelector('#errorTags');
+const checkboxesEl = document.querySelectorAll('input[type="checkbox"]');
 
 let selectedTags = [];
 
@@ -30,7 +33,6 @@ function createDropdown(tags) {
 //displays selected tags
 function updateSelectedTags() {
     selectedTags = [];
-    const checkboxesEl = document.querySelectorAll('input[type="checkbox"]');
 
     //checks each checkbox if filled
     checkboxesEl.forEach(function (checkbox) {
@@ -64,7 +66,6 @@ function validateTagSelection(errorEl) {
 }
 
 function clearCheckboxes() {
-    const checkboxesEl = document.querySelectorAll('input[type="checkbox"]');
     checkboxesEl.forEach(function (checkbox) {
         checkbox.checked = false;
     });
@@ -91,7 +92,6 @@ function creationAndReset() {
 
 //event listener every time a checkbox is changed
 dropdownMenu.addEventListener('change', function (event) {
-    const displayTagsEl = document.querySelector('#selectedTags');
     updateSelectedTags();
     displaySelectedTags(displayTagsEl);
 });
@@ -111,8 +111,6 @@ clearEl.addEventListener('click', function (event) {
 //event listener for form submission
 submitEl.addEventListener('submit', function (event) {
     event.preventDefault();
-    const displayTagsEl = document.querySelector('#selectedTags');
-    const errorEl = document.querySelector('#errorTags');
 
     //syncs up selectedTags array with user selections
     updateSelectedTags();
