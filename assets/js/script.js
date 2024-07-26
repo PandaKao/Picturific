@@ -2,8 +2,11 @@ const buttonEl = document.querySelector('button');
 const dropdownMenu = document.querySelector('.dropdown-menu');
 const dropdownToggleEl = document.querySelector('.dropdown-toggle');
 const submitEl = document.querySelector('#tagSearch');
+const addPictureEl = document.querySelector('#addPicture');
 const clearEl = document.querySelector('#clearButton');
 const modalTagListEl = document.querySelector('.modalTagsList');
+const modalSubmitEl = document.querySelector('#modalSubmit');
+const uploadEl = document.querySelector('#upload');
 
 let selectedTags = [];
 
@@ -35,6 +38,9 @@ function createModalTagsList(tags) {
         let labelText = document.createTextNode(` ${tag}`);
 
         const checkboxEl = document.createElement('input');
+        checkboxEl.onchange = function (event) {
+            validateModal(event);
+        }
         checkboxEl.type = 'checkbox';
         checkboxEl.value = tag;
 
@@ -150,6 +156,38 @@ submitEl.addEventListener('submit', function (event) {
         dropdownToggleEl.setAttribute('aria-expanded', 'false');
     }
 })
+
+addPictureEl.addEventListener('input', validateModal)
+
+function validateModal(event) {
+    const urlEl = document.querySelector('#srcUrl')
+    const submitTagsError = document.querySelector('#submitTagsError');
+    event.preventDefault();
+    updateSelectedTags();
+    validateTagSelection(submitTagsError);
+    if (validateTagSelection(submitTagsError) && urlEl.value !== '') {
+        modalSubmitEl.disabled = false;
+    } else {
+        modalSubmitEl.disabled = true;
+    }
+
+}
+
+
+addPictureEl.addEventListener('submit', function () {
+    const urlEl = document.querySelector('#srcUrl')
+    let image = {
+        src: urlEl.value,
+        tags: selectedTags,
+    }
+    console.log(selectedTags);
+    updateSelectedTags();
+    storeImage(image);
+    creationAndReset();
+    urlEl.value = '';
+});
+
+
 
 //jQuery to run on startup
 $(document).ready(function () {
