@@ -3,8 +3,8 @@ const dropdownMenu = document.querySelector('.dropdown-menu');
 const dropdownToggleEl = document.querySelector('.dropdown-toggle');
 const submitEl = document.querySelector('#tagSearch');
 const clearEl = document.querySelector('#clearButton');
+const modalTagListEl = document.querySelector('.modalTagsList');
 
-// const maxTags = 3;
 let selectedTags = [];
 
 function createDropdown(tags) {
@@ -26,21 +26,37 @@ function createDropdown(tags) {
     })
 }
 
+function createModalTagsList(tags) {
+    tags.forEach(function (tag) {
+        const liTag = document.createElement('li');
+
+        const labelTag = document.createElement('label');
+        labelTag.classList.add('dropdown-item');
+        let labelText = document.createTextNode(` ${tag}`);
+
+        const checkboxEl = document.createElement('input');
+        checkboxEl.type = 'checkbox';
+        checkboxEl.value = tag;
+
+        labelTag.appendChild(checkboxEl);
+        labelTag.appendChild(labelText);
+        liTag.appendChild(labelTag);
+        modalTagListEl.appendChild(liTag);
+    })
+}
+
 //displays selected tags
-function updateSelectedTags(displayTagsEl) {
+function updateSelectedTags() {
     selectedTags = [];
     const checkboxesEl = document.querySelectorAll('input[type="checkbox"]');
-
 
     //checks each checkbox if filled
     checkboxesEl.forEach(function (checkbox) {
         if (checkbox.checked) {
             //adds checkbox value to selectedTags array
-            selectedTags.push(checkbox.value);
+            selectedTags.push(checkbox.value)
         }
     });
-
-    displaySelectedTags(displayTagsEl);
 }
 
 function displaySelectedTags(displayTagsEl) {
@@ -94,16 +110,20 @@ function creationAndReset() {
 //event listener every time a checkbox is changed
 dropdownMenu.addEventListener('change', function (event) {
     const displayTagsEl = document.querySelector('#selectedTags');
-    updateSelectedTags(displayTagsEl);
+    updateSelectedTags();
+    displaySelectedTags(displayTagsEl);
 });
 
 //event listener to clear tags
 clearEl.addEventListener('click', function (event) {
     event.preventDefault();
     const displayTagsEl = document.querySelector('#selectedTags');
+    const errorEl = document.querySelector('#errorTags');
 
+    errorEl.textContent = '';
     clearCheckboxes();
-    updateSelectedTags(displayTagsEl);
+    updateSelectedTags();
+    displaySelectedTags(displayTagsEl);
 });
 
 //event listener for form submission
@@ -113,7 +133,8 @@ submitEl.addEventListener('submit', function (event) {
     const errorEl = document.querySelector('#errorTags');
 
     //syncs up selectedTags array with user selections
-    updateSelectedTags(displayTagsEl);
+    updateSelectedTags();
+    displaySelectedTags(displayTagsEl);
 
     if (validateTagSelection(errorEl)) {
         creationAndReset();
@@ -134,5 +155,6 @@ submitEl.addEventListener('submit', function (event) {
 $(document).ready(function () {
     $('.dropdown-toggle').dropdown();
     createDropdown(tags);
+    createModalTagsList(tags);
     updateTagHistory();
 });
