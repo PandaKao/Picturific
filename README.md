@@ -1,47 +1,84 @@
 <div align="center">
-  <img src="./assets/images/proj-01-wireframe.gif">
+  <img src="./assets/images/Picturific-index-home.png">
 </div>
 
 # Picturific
-Picturific is a streamline app for labeling your pictures.
+### Create & share your own picture carousel
 
-## Description
-Allow the ability to view pictures in a photo carousel and view/assign labels to describe each picture by:
-- category
-- type 1
-- type 2
-- type 3
-- type 4
-- type 5 
+A place to organize, display, and share customizable photo gallery online with others.
 
-Motivation for creating this app was... and created this app for this purpose...
+Picturific is an innovative web application designed to offer a personalized image viewing experience
+- dynamic tagging
 
-Lessons learned were... implementing Bootstrap and Swiper functionality...
+- intuitive carousel interface
+
+### Functional Concept
+- Photo gallery that allows users to find pictures based on tags
+
+- A place to organize and display photo gallery
+
+- Display and share customizable photo gallery online with others
+
+### Description
+Users are able to:
+- Input urls and assign associated tags
+
+- Select from a diverse set of tags to filter and display images that match their interests
+    - (pets, plants, scenery, and more…)
+
+
+### App Design/Build
+- Leveraging local storage, the app ensures a seamless user experience by remembering user preferences and tags, while offering a visually appealing and responsive design
+
+- Built with modern web technologies
+    - Bootstrap
+    - Swiper.js
+
+
+## User Experience
+Generate picture carousel by keyword(s):
+- Select from a diverse set of tags to filter and display images
+    (pets, plants, scenery, and more…)
+
+Upload & tag pictures:
+- Upload button activates pop-up module
+
+- Add picture by URL and select keywords to tag image used by search feature
+
+
 
 ## Access to application
-URL: 
+URL: https://brianleepetros.github.io/group-02-picturific/
 
 GitHub Repo: https://github.com/brianleepetros/group-02-picturific
 
-## Usage
-Provide instructions and examples for use. Include screenshots as needed.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README.
 
-## Credits
-List your collaborators, if any, with links to their GitHub profiles.
+## Future development
+- Implement cloud server
+- User login
+- Custom tag generation
+- Rebranding of logo
+<div align="center">
+  <img src="./assets/images/Pictastic-logo.png">
+</div>
 
-GitHub profiles:
-- Brian Petros
-    - https://github.com/brianleepetros
-- Justin
-    - https://github.com/PandaKao
-- Stephen
-    - https://github.com/aquarius70
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
 
-If you followed tutorials, include links to those here as well.
+
+## Credits/Links
+### Development Team
+Stephen Sneed: https://github.com/sfsneed70
+
+Justin Kao: https://github.com/PandaKao
+
+Brian Petros:  https://github.com/brianleepetros
+
+### Access to application
+URL: https://brianleepetros.github.io/group-02-picturific/
+
+GitHub Repo: https://github.com/brianleepetros/group-02-picturific
+
 
 ## License
 
