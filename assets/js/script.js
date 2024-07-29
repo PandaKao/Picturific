@@ -185,7 +185,6 @@ addPictureEl.addEventListener('submit', function (event) {
         src: urlEl.value,
         tags: selectedTags,
     }
-    console.log(selectedTags);
     updateSelectedTags();
     storeImage(image);
     creationAndReset();
