@@ -118,6 +118,7 @@ function creationAndReset() {
 
 //event listener every time a checkbox is changed
 dropdownMenu.addEventListener('change', function (event) {
+    event.preventDefault();
     const displayTagsEl = document.querySelector('#selectedTags');
     updateSelectedTags();
     displaySelectedTags(displayTagsEl);
@@ -163,9 +164,9 @@ submitEl.addEventListener('submit', function (event) {
 addPictureEl.addEventListener('input', validateModal)
 
 function validateModal(event) {
+    event.preventDefault();
     const urlEl = document.querySelector('#srcUrl')
     const submitTagsError = document.querySelector('#submitTagsError');
-    event.preventDefault();
     updateSelectedTags();
     validateTagSelection(submitTagsError);
     if (validateTagSelection(submitTagsError) && urlEl.value !== '') {
@@ -177,7 +178,8 @@ function validateModal(event) {
 }
 
 
-addPictureEl.addEventListener('submit', function () {
+addPictureEl.addEventListener('submit', function (event) {
+    event.preventDefault();
     const urlEl = document.querySelector('#srcUrl')
     let image = {
         src: urlEl.value,
