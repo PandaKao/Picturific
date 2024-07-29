@@ -9,54 +9,53 @@ assignees: Brian Petros, Stephen Sneed, Justin Kao
 ## User Story:
 
 **AS A** user,  
-**I WANT TO** upload photo urls and assign associated keywords  
-**SO THAT** a main photo carousel that displays images based only on the keywords, as well as side carousel that show different photos filtered by individual keyword.
+**I WANT TO** upload photo urls and assign associated keywords,  
+**SO THAT** I can filter and view photos in a carousel based on selected keywords, and navigate through search history.
 
 ## Acceptance Criteria:
 
 1. [Upload Functionality]
-   - Users can upload photo URLs.
-   - Users can assign multiple keywords to each photo.
+   - Users can upload photo URLs via a modal form.
+   - Users can assign up to 3 keywords to each photo.
+   - Uploaded photos and their keywords are stored in local storage.
 
 2. [Dropdown Menu]
-   - Users can search via dropdown menu for keywords to filter the main carousel.
-   - Users can hover over keywords for a tooltip.
+   - Users can select keywords from a dropdown menu to filter the main carousel.
+   - Validation ensures users select between 1-3 keywords.
     
-3. [Main Photo Carousel]
-   - The main carousel displays photos with only the selected keywords.
-   - Able to cycle through photos via next and previous buttons.
-   - Users can select a keyword to display a side carousel based on keyword.
-   - Users are able to upvote or downvote keywords.
-        
-4. [Side Photo Carousel]
-   - Each side carousel shows photos related to a single keyword.
-   - Side carousel update dynamically based on the selected keyword.
-  
+3. [Photo Carousel]
+   - The main carousel displays photos filtered by the selected keywords.
+   - Users can click a tag to fill the carousel with photos of that keyword.
+   - Carousel and tag history are updated in real-time and stored in local-storage.
+
+4. [Tag History]
+   - A history of previous tag selections is displayed.
+   - Users can view and revert to previous tag selections.
+   - Users can navigate back to previous search tags using a previous button.
 
 
 ## Tasks:
 
 1. [Upload Functionality]
-   - [ ] Implement UI for uploading photo URLs
-   - [ ] Develop logic for keyword assignments
-   - [ ] Validate URLs making sure they are acceptable
+   - [ ] Implement a modal for uploading photo URLs
+   - [ ] Validate URLs to ensure they are valid image URLs.
    - [ ] Allow users to assign multiple keywords to each uploaded photo
-   - [ ] Create user signup feature
+   - [ ] Store uploaded photos and their keywords in local storage.
 
 2. [Dropdown Menu]
-   - [ ] Design dropdown menu UI for keyword selection
-   - [ ] Implement search functionality within dropdown menu for filtering keywords
-   - [ ] Integrate tooltip functionality for keywords to display additional information on hover.
-
+   - [ ] Design and implement dropdown menu UI for keyword selection
+   - [ ] Implement functionality to display selected keywords.
+   - [ ] Implement validation to ensure users select between 1-3 keywords.
+   - [ ] Implement a clear function to reset keyword selections.
 
 3. [Main Photo Carousel]
-   - [ ] Design and implement main carousel UI
-   - [ ] Integrate next and previous buttons for cycling through photos
-   - [ ] Implement filtering mechanism based on select keywords
-   - [ ] Enable users to upvote or downvote keywords directly from the carousel
-   - [ ] Have keywords be removed when reaching zero upvotes
-   - [ ] Allow users to add keywords to photos from the carousel
+   - [ ] Design and implement the main carousel UI
+   - [ ] Implement a filtering mechanism to display photos based on selected keywords.
+   - [ ] Implement a keyword buttons within the carousel to filter by specific keywords.
+   - [ ] Implement a previous button to navigate back to previous tag selections.
+   - [ ] Store and update carousel state and tag history in local storage.'
 
-4. [Side Photo Carousel]
-   - [ ] Develop UI for displaying side carousel related to selected individual keyword
-   - [ ] Implement dynamic updating of side carousel based on selected keyword from main carousel
+4. [Tag History]
+   - [ ] Implement functionality to display a history of previous tag selections.
+   - [ ] Allow users to revert to previous tag selections.
+   - [ ] Ensure tag history is updated in real-time and stored in local storage.
