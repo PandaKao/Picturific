@@ -21,6 +21,7 @@ function createDropdown(tags) {
         const checkboxEl = document.createElement('input');
         checkboxEl.type = 'checkbox';
         checkboxEl.value = tag;
+        checkboxEl.setAttribute("id", tag);
 
         labelTag.appendChild(checkboxEl);
         labelTag.appendChild(labelText);
@@ -43,6 +44,8 @@ function createModalTagsList(tags) {
         }
         checkboxEl.type = 'checkbox';
         checkboxEl.value = tag;
+        checkboxEl.setAttribute("id", tag);
+
 
         labelTag.appendChild(checkboxEl);
         labelTag.appendChild(labelText);
