@@ -20,8 +20,8 @@ const tags = [
 
 let images = [
     {
-        src: "https://i.cbc.ca/1.7046282.1701447456!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/humane-society.jpg",
-        tags: ['cat'],
+        src: "https://autumntrailsvet.com/wp-content/uploads/2022/06/what-are-similarities-between-cats-and-dogs.jpg",
+        tags: ['dog', 'cat'],
     },
     {
         src: "https://cats.com/wp-content/uploads/2024/02/96E4B546-9BE7-4977-9A29-05F2D9BB47BC_1_102_a-e1711411797978.jpeg",
@@ -44,8 +44,8 @@ let images = [
         tags: ['plant'],
     },
     {
-        src: "https://autumntrailsvet.com/wp-content/uploads/2022/06/what-are-similarities-between-cats-and-dogs.jpg",
-        tags: ['dog', 'cat'],
+        src: "https://i.cbc.ca/1.7046282.1701447456!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/humane-society.jpg",
+        tags: ['cat'],
     },
     {
         src: "https://st2.depositphotos.com/4217166/6477/i/450/depositphotos_64777413-stock-photo-cute-dog-with-cat-love.jpg",
