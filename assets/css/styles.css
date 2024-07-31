@@ -187,5 +187,6 @@ swiper-slide button {
 swiper-slide img {
   display: block;
   width: 100%;
+  object-fit: cover;
   border-radius: 10px;
 }
