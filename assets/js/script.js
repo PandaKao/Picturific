@@ -134,6 +134,12 @@ clearEl.addEventListener('click', function (event) {
     clearCheckboxes();
     updateSelectedTags();
     displaySelectedTags(displayTagsEl);
+
+//resets tags, history, carousel but still keeps local storage intact
+    tagHistory = [];
+    currentTagList = [];
+    updateTagHistory();
+    buildCarousel(imagesWithTags(currentTagList));
 });
 
 //event listener for form submission
